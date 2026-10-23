@@ -1,0 +1,63 @@
+# sha256 of every input and output of the pick-1 pipeline whose bytes we know.
+# Check from the repository root (missing files are skipped):
+#   sha256sum -c --ignore-missing HASHES.sha256
+# Paths are where README.md puts each file; none of these files are in git.
+# "rebuilt" = rebuilding from the shipped scripts gave these exact bytes (2026-10-22).
+#
+# --- step 2: indexes and folds (competition data -> src/), all rebuilt byte-identical
+530276f956f540a5a901cd9d3641a90d11eee1c93652513418c948f4f0ff1b27  src/study_metadata.csv
+df16012c2cc2e92298a5b18c1314d67e16c7eb9ae67e0936cc3825207e8c555d  src/patient_map.csv
+5b595b0005cc68bcf58d4bbdc4e52efa125dcbdb3b70f5fb1c1ae721f88e03fd  src/folds.csv
+03f785e0fc4b6a6ac809cfed729ecd56ec20c78ce0eb20133bbd7f92d7f7fa42  src/series_index.parquet
+8bb39476b9013e9e4d1d0f852d3569561d591660dd91100f53ec6ee551e04f00  src/study_index.parquet
+4b69bb6e133b133eb664f689745f63188ee8d7a3c15c57042323bc6ef82fad1d  src/slice_order.parquet
+#
+# --- step 3: report labels
+# Qwen3-32B raw output: a new labelling pass (4-bit GPU inference) is not expected to repeat it
+# byte-for-byte; the CSV converted from this jsonl (--score-only) was rebuilt byte-identical,
+# and so were the rule-extractor, consensus and mix3 tables from their inputs.
+6980aa91ef6e87a827435b8b3ef5e6c0a66f1cd7a81bd68b4dcb14a309fe9340  src/llm_labels.jsonl
+69e0c5788f2ebde1a3f9965187b85c22ea37f2051affb2bc843b8c4ff1e41978  src/report_labels_llm.csv
+17eebf925a8012ecff63e3f90ad4cda367966dcf9d1c443398a0fd99345b469a  src/report_labels_ours.csv
+d0ce84dc696d035dab11be2744303fe3111af34db389a528d981751b3cd4e8d8  src/report_labels_consensus.csv
+32b695c1fac9d0633b4580f569099e72a1896d76ea470e604662cdec002becf7  src/report_labels_mix3.csv
+# public label tables read by src/build_mix3.py (--dl folder)
+eb4c2b29e7e84adbb4b5ccee825ca20ade6a43dbe295f13be442d549e4f5dca4  data/public_labels/stevenleehans_rsna-knee-llm-report-labels/llm_labels_v4_blend.csv
+96444cd3c7d396bae4a71454317d9cbe0689759b5278b30939781e04d0774537  data/public_labels/stevenleehans_rsna-knee-llm-report-labels/llm_labels_full.csv
+a134cfce2f751f90f4219d791a563ee677b6223ac28f32e456bb3759c1d3fba9  data/public_labels/nartaa_rsna-knee-hpo-assets/train_labels_v1.parquet
+77a3857a25a81d7e1ab4e360b1b86bb2fba8620cb43d14d02b97c6cd16004f00  data/public_labels/nartaa_rsna-knee-hpo-assets/labels_v1_gemlow.parquet
+#
+# --- step 4: OAI labels (3DReasonKnee + OAI), rebuilt byte-identical; the OAI image cache itself
+# needs OAI DICOM and was not re-verified
+9985ae1a8eae58d66f54f14e4284c0025ee8b51ee89ce068059b69a6881062c8  data/oai_cache/oai_full_labels_ladder.csv
+84375ee081962eca6bdc17598b57eed1d3a21f987fa7c915af5752dcce639f3e  data/oai_cache/oai_full_manifest.csv
+8c94442c39159a641806d634ff284b02fae54678bd810a8c95ea137416a30b2e  data/oai_cache/folds_oai_full.csv
+#
+# --- step 5: the 13 checkpoints (also in release/weights.sha256). Retraining will NOT reproduce
+# these bytes (cuDNN nondeterminism); these are the released files (re-saved with the data-path
+# strings in their args replaced by placeholders; tensors identical to the scored checkpoints).
+9ed2ef3d149fc2a63a6772082362b9afbaf2dc91fc9eff7f9642ebb467d81e05  src/checkpoints/fold0_d43b_mix3u48.pt
+53276fcbb1420cc1b6832d3d701bffb9056055555c8293f503bf85b709162e34  src/checkpoints/fold1_d43b_mix3u48.pt
+8990ecd93b269c9357f07ee8366208ceb433a70e99c81150a2bb8a78fc04ccc5  src/checkpoints/fold2_d43b_mix3u48.pt
+ecc2236905ea2def399ac29312877dbc160f251f1afea38046001dab552c2ccf  src/checkpoints/fold3_d43b_mix3u48.pt
+ede76c2a38670d639819f056ca864f49a9cab7e8584e8bc0abdbccfd3b1f6837  src/checkpoints/fold4_d43b_mix3u48.pt
+116493f1aba2a16b9aa5ceff429965076372f60d168f4f94f58b03a3539aa8d4  src/checkpoints/fold0_d44_ep48.pt
+23fd7f0ce95053edc4f9fd6af5df52e2cc7b3e6e0bf5f23fc012986f6804d30e  src/checkpoints/fold1_d44_ep48.pt
+97288299c228251eb60adcc5f1db005e371137c17889cc8df3e0bf9c3d91b06b  src/checkpoints/fold2_d44_ep48.pt
+a612f3936a09123da03be8ce0f4c4eaf30cbf3bfbbcfd2933fb4a1ab6f14a3b6  src/checkpoints/fold3_d44_ep48.pt
+c7c76c3c3936c23de63aa700dcec26a6684cb198303f930bda2b91d9eeba8957  src/checkpoints/fold4_d44_ep48.pt
+7d982df07759e92e2730338737aa6b6e48a32074609af91e630515eeb94699b3  src/checkpoints/fold5_d43b_fdng48_s0.pt
+f17b456485b39bd299152bda176b05269d9977e1a118738f4fb5b9498f442703  src/checkpoints/fold5_d43b_fdng48_s1.pt
+63960f03d4712e2384ee8b15a6cf3055e2a9ecfc271dd64e1fa14e68d13a29f8  src/checkpoints/fold5_d43b_fdng48_s2.pt
+#
+# --- step 7: the Kaggle notebook (md5 c86262fa868ca7252c7c0ff629633796; the scored pick-1
+# notebook, md5 c9b16569728d2eb60043fefa59260339, differs only in the weights search path) and
+# the public artifacts it runs (the notebook checks the last four itself before use)
+7915c0825c20a132a1528bc233d5e0c136bdc24a8dfad7a871d0b199e03746f3  kaggle/rsna-knee-submission.ipynb
+fd96541cbe2e5b37494636dd13b79871a7a6ed9ad94fe528dc6f7a253d4be8b8  third_party/cache/nartaa/cell3.py
+bcd864cbf349882e876959b49cb348cbb89b4c62fc204d4e4261049c5e3a79c5  third_party/cache/nartaa/cell4.py
+cb168cfe82f5a04114894f6c07bbd6daf0373ad2eb0dfcee34df3ecf625986af  third_party/cache/heliosli/0957_cell4.txt
+68f70dd31cc3544cb5734313d06538355a34b122ff430a32820756175c9c9dd9  third_party/cache/heliosli/0957_cell5.txt
+7e5315dad125b99fc65b340b3de41de628e9be51ff5835355dd61c86472244ef  data/kaggle_inputs/raptor_ft_alldata_t16_blendjev_oai_d96_r384_swa.pt
+c4bb0f7399ada9a020e0c15cae6252033cf0c4335e999961793a176063074ec6  data/kaggle_inputs/rsna-knee-compact-r7cnxfsss/manifest.json
+5904dd16eb9a4fd7a1caf90ac977f8fe2ef364908598c23c209db3fe7fd1563e  data/kaggle_inputs/rsna-orthofoundation-fold0-epoch7-20261004/anatomy.pt

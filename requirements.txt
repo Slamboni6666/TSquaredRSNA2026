@@ -1,0 +1,26 @@
+# Training / data-preparation environment the 13 checkpoints were trained in
+# (Python 3.11.14, Windows 11, CUDA 12.8). Install torch from the CUDA 12.8 index:
+#   pip install torch==2.9.1 --index-url https://download.pytorch.org/whl/cu128
+torch==2.9.1
+timm==1.0.22
+numpy==1.23.5
+pandas==2.3.3
+scipy==1.15.3
+scikit-learn==1.7.2   # training env had 1.8.0 force-installed over numpy 1.23.5 (pip check conflict); only roc_auc_score is used
+pydicom==3.0.1
+pyarrow==25.0.1
+pillow==12.2.0
+langdetect==1.0.9
+# OAI-ZIB pilot builders only (build_oai_cache.py reads NIfTI, build_oai_labels.py reads xlsx)
+nibabel==5.3.3
+openpyxl==3.1.5
+# Kaggle uploads / third_party/fetch_third_party.py
+kaggle==2.2.4
+
+# NOT pinned here: the Qwen3-32B report-labelling pass (src/llm_label_reports.py) ran in a separate
+# environment with transformers + accelerate + bitsandbytes (4-bit); its exact versions were not
+# recorded. See README.md, step 3.
+#
+# DICOM decoder wheels used by the Kaggle notebook (optional dataset, see README.md step 6):
+#   pylibjpeg==2.1.0 pylibjpeg-libjpeg==2.4.0 pylibjpeg-openjpeg==2.5.0 python-gdcm==3.0.26
+#   (pylibjpeg-libjpeg is GPL-3.0; it is downloaded by you from PyPI, never shipped here)

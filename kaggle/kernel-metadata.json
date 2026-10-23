@@ -1,0 +1,29 @@
+{
+  "id": "<KAGGLE_USER>/rsna-knee-submission",
+  "title": "RSNA Knee Submission",
+  "code_file": "rsna-knee-submission.ipynb",
+  "language": "python",
+  "kernel_type": "notebook",
+  "is_private": true,
+  "enable_gpu": true,
+  "enable_tpu": false,
+  "enable_internet": false,
+  "keywords": [
+    "gpu"
+  ],
+  "dataset_sources": [
+    "<KAGGLE_USER>/rsna-knee-code",
+    "<KAGGLE_USER>/rsna-knee-decoder-wheels",
+    "<KAGGLE_USER>/rsna-knee-weights",
+    "nartaa/rsna-knee-publication-swa-weights-20261007",
+    "heliosli/rsna-knee-compact-r7cnxfsss",
+    "heliosli/rsna-orthofoundation-fold0-epoch7-20261004"
+  ],
+  "kernel_sources": [],
+  "competition_sources": [
+    "rsna-knee-abnormality-detection"
+  ],
+  "model_sources": [],
+  "docker_image": "gcr.io/kaggle-private-byod/python@sha256:37c64f7dd9c54116ecd1bcc88817c5469b88387388fade02bfa8bf3fc647d461",
+  "machine_shape": "NvidiaTeslaT4"
+}

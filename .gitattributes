@@ -1,0 +1,5 @@
+# Store every file byte-for-byte: no end-of-line conversion on commit or checkout.
+# kaggle/rsna-knee-submission.ipynb must keep md5 c86262fa868ca7252c7c0ff629633796 and
+# kaggle/c02r7_cell.py plus several kaggle/code_dataset/*.py files are CRLF on purpose
+# (they keep the byte layout of the files that ran on Kaggle; see README.md for the differences).
+* -text

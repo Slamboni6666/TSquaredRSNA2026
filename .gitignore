@@ -1,0 +1,41 @@
+# Allowlist: ignore everything, then re-admit source code and documentation only.
+# Data, labels, folds, metadata, weights and logs can therefore never be added by accident.
+*
+!*/
+!*.py
+!*.md
+!*.ipynb
+!*.sh
+!*.sha256
+!requirements.txt
+!LICENSE
+!.gitignore
+!.gitattributes
+!kaggle/kernel-metadata.json
+!kaggle/code_dataset/dataset-metadata.json
+
+# Explicit denies (they come after the allow rules, so they win).
+*.csv
+*.parquet
+*.jsonl
+*.npy
+*.npz
+*.pt
+*.pth
+*.log
+*.zip
+*.whl
+__pycache__/
+kernel_out*/
+data/
+src/checkpoints/
+src/oof_parts/
+src/audit_out/
+src/train_series/
+src/test_series/
+third_party/cache/
+kaggle/build/out/
+kaggle/kaggle_upload/
+TRACKER.md
+CLAUDE.md
+PLAN.md
