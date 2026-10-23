@@ -1,5 +1,5 @@
 """
-download_weights.py -- fetch the 13 pick-1 checkpoints from this repository's GitHub Release and
+download_weights.py -- fetch the 13 checkpoints from this repository's GitHub Release and
 verify each against release/weights.sha256.
 
 The weights are not in git (13 files, about 203 MB each, 2.64 GB in total). They are attached to
@@ -62,7 +62,7 @@ def origin_repo() -> tuple[str, str] | None:
 
 
 def main() -> int:
-    ap = argparse.ArgumentParser(description="download and verify the 13 pick-1 checkpoints")
+    ap = argparse.ArgumentParser(description="download and verify the 13 checkpoints")
     ap.add_argument("--out", default=str(ROOT / "src" / "checkpoints"),
                     help="destination folder (default: src/checkpoints, where train.py writes)")
     ap.add_argument("--only", nargs="*", default=None, help="download only these file names")

@@ -47,7 +47,7 @@ _ap.add_argument("--out", default=str(HERE / "out"), help="output folder")
 _args = _ap.parse_args()
 TP = Path(_args.third_party_dir)
 OUT_DIR = Path(_args.out)
-NB_MD5 = "c86262fa868ca7252c7c0ff629633796"           # pick 1 minus the account mount path
+NB_MD5 = "c86262fa868ca7252c7c0ff629633796"           # scored notebook minus the account mount path
 RAPTOR_CELLS = {"cell3": "fd96541cbe2e5b37494636dd13b79871a7a6ed9ad94fe528dc6f7a253d4be8b8",
                 "cell4": "bcd864cbf349882e876959b49cb348cbb89b4c62fc204d4e4261049c5e3a79c5"}
 # heliosli/0-957-latest-dataset-score-in-one-click (ipynb md5 95920079d1bb9b236821401907daa411,

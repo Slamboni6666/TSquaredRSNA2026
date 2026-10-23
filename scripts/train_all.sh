@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# train_all.sh -- the three training runs behind the 13 pick-1 checkpoints (C02R7-MIX3).
+# train_all.sh -- the three training runs behind the 13 released checkpoints.
 #
 # Each command below is the exact argument set stored in the shipped checkpoints' "args"
 # (only the three data paths are placeholders). Run from the repository root; train.py reads

@@ -13,15 +13,15 @@ Both are versioned: re-running uploads a new version rather than replacing, so a
 pinned to an older version keeps working and a bad upload is recoverable.
 
 In this repository the code dataset is staged from kaggle/code_dataset/ (the exact modules the
-pick-1 notebook ran with, Kaggle code dataset v5 = commit 4f96cbd, local paths neutralised) and
+submission notebook ran with, Kaggle code dataset v5 = commit 4f96cbd, local paths neutralised) and
 the weights from src/checkpoints/ (where src/train.py writes them). Both are uploaded under
 your own Kaggle account, licence CC BY-NC 4.0.
 
 Usage:
     python kaggle/package_for_kaggle.py --dry-run      # stage and inspect, upload nothing
     python kaggle/package_for_kaggle.py --code
-    python kaggle/package_for_kaggle.py --weights      # default --runs = the 13 pick-1 checkpoints
-    python kaggle/package_for_kaggle.py --all --message "C02R7-MIX3 13 checkpoints"
+    python kaggle/package_for_kaggle.py --weights      # default --runs = the 13 checkpoints
+    python kaggle/package_for_kaggle.py --all --message "final submission, 13 checkpoints"
 """
 
 from __future__ import annotations
@@ -38,8 +38,8 @@ CODE_DIR = ROOT / "code_dataset"                        # the modules the notebo
 CKPT_DIR = ROOT.parent / "src" / "checkpoints"          # where src/train.py writes fold*.pt
 STAGE = ROOT / "kaggle_upload"
 PY = sys.executable
-# the 13 checkpoints of pick 1 (C02R7-MIX3): runs A, B and C of scripts/train_all.sh
-PICK1_RUNS = "d43b_mix3u48,d44_ep48,d43b_fdng48_s0,d43b_fdng48_s1,d43b_fdng48_s2"
+# the 13 checkpoints of the final submission: runs A, B and C of scripts/train_all.sh
+FINAL_RUNS = "d43b_mix3u48,d44_ep48,d43b_fdng48_s0,d43b_fdng48_s1,d43b_fdng48_s2"
 
 # Only what the notebook actually imports, plus what those import in turn. Shipping the
 # whole repo would drag in the training and audit scripts, which pull pandas/sklearn paths
@@ -68,7 +68,7 @@ EXTERNAL_IMPORTS = set()
 # weights it builds on).
 WEIGHTS_DESCRIPTION = (
     "13 ConvNeXt-small 2.5D MIL checkpoints for the RSNA Knee Abnormality Detection competition "
-    "(pick-1 C02R7-MIX3 submission). Licence: CC BY-NC 4.0. The models were trained on the "
+    "(final submission). Licence: CC BY-NC 4.0. The models were trained on the "
     "competition data with auxiliary supervision from the Osteoarthritis Initiative (OAI); use "
     "of the weights grants no right to the underlying data. Third-party credits and licences: "
     "THIRD_PARTY.md in the solution repository.\n\n"
@@ -327,9 +327,9 @@ def main():
     ap.add_argument("--all", action="store_true")
     ap.add_argument("--dry-run", action="store_true")
     ap.add_argument("--message", default="update")
-    ap.add_argument("--runs", default=PICK1_RUNS,
+    ap.add_argument("--runs", default=FINAL_RUNS,
                     help="comma-separated run tags to ship (fold{N}_{tag}.pt). Default: the 13 "
-                         "pick-1 checkpoints, " + PICK1_RUNS + ". Pass '' to ship every "
+                         "released checkpoints, " + FINAL_RUNS + ". Pass '' to ship every "
                          "checkpoint on disk, which is almost never what you want -- see "
                          "stage_weights.")
     ap.add_argument("--ema-weights", choices=["ema", "raw"], default=None,

@@ -1,4 +1,4 @@
-# sha256 of every input and output of the pick-1 pipeline whose bytes we know.
+# sha256 of every input and output of the final pipeline whose bytes we know.
 # Check from the repository root (missing files are skipped):
 #   sha256sum -c --ignore-missing HASHES.sha256
 # Paths are where README.md puts each file; none of these files are in git.
@@ -50,7 +50,7 @@ c7c76c3c3936c23de63aa700dcec26a6684cb198303f930bda2b91d9eeba8957  src/checkpoint
 f17b456485b39bd299152bda176b05269d9977e1a118738f4fb5b9498f442703  src/checkpoints/fold5_d43b_fdng48_s1.pt
 63960f03d4712e2384ee8b15a6cf3055e2a9ecfc271dd64e1fa14e68d13a29f8  src/checkpoints/fold5_d43b_fdng48_s2.pt
 #
-# --- step 7: the Kaggle notebook (md5 c86262fa868ca7252c7c0ff629633796; the scored pick-1
+# --- step 7: the Kaggle notebook (md5 c86262fa868ca7252c7c0ff629633796; the scored
 # notebook, md5 c9b16569728d2eb60043fefa59260339, differs only in the weights search path) and
 # the public artifacts it runs (the notebook checks the last four itself before use)
 7915c0825c20a132a1528bc233d5e0c136bdc24a8dfad7a871d0b199e03746f3  kaggle/rsna-knee-submission.ipynb

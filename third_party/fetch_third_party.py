@@ -1,6 +1,6 @@
 """
 fetch_third_party.py -- download the four public Kaggle notebook cells the blend runs, and
-verify each one against the sha256 it had when the C02R7-MIX3 notebook was built.
+verify each one against the sha256 it had when the submission notebook was built.
 
 The cells are NOT redistributed as separate files in this repository: no licence for them could
 be confirmed (see THIRD_PARTY.md). They are fetched from their authors' public Kaggle notebooks:

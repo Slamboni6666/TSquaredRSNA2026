@@ -1,4 +1,4 @@
-# Release assets: the 13 pick-1 checkpoints
+# Release assets: the 13 checkpoints
 
 The weights are **not in git**. They are attached as assets to a GitHub Release of this
 repository and are fetched and checked with:
